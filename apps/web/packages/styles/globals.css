@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent-400: #e76446;
+  --accent-500: #bf5a3d;
+  --accent-600: #95321b;
+  --gray-900: #1a1714;
+  --gray-800: #262624;
+  --gray-700: #3b3836;
+  --gray-600: #524f4d;
+  --gray-500: #7a7573;
+  --gray-400: #8c8c87;
+  --gray-300: #a8a6a3;
+  --gray-200: #c7c7c2;
+  --gray-100: #e3e3de;
+  --gray-50: #f3f2ef;
+}
+@layer base {
+  body {
+    @apply bg-gray-50 font-body text-gray-900;
+  }
+
+  h1,
+  .h1 {
+    @apply font-display text-h1;
+  }
+  h2,
+  .h2 {
+    @apply font-body text-base text-accent;
+  }
+  h3,
+  .subtitle {
+    @apply font-display text-subtitle;
+  }
+
+  ::selection {
+    @apply bg-gray-300;
+  }
+  ::-moz-selection {
+    @apply bg-gray-300;
+  }
+}
+@layer utilities {
+  .if-motion-reduce {
+    @apply motion-reduce:transition-none motion-reduce:hover:transform-none;
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--gray-100);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--gray-200);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-300);
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cv",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/TobWul/cv.git",
+  "author": "Tobias Wulvik <tobias.wulvik@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:web": "yarn workspace web dev",
+    "dev:build": "yarn workspace web build",
+    "dev:studio": "yarn workspace studio dev",
+    "build:studio": "yarn workspace studio build"
+  }
+}
