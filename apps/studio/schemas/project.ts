@@ -17,6 +17,7 @@ export default defineType({
     }),
     defineField({
       name: 'description',
+      title: 'Type of work',
       type: 'localeString',
     }),
     defineField({

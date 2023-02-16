@@ -8,6 +8,7 @@ import {
   PresentationType,
   ReferencePersonType,
   WorkType,
+  VolunteerProjectType,
 } from "packages/types";
 import { useContext } from "react";
 import { LocaleStringType } from "../../../studio/languages";
@@ -19,7 +20,8 @@ interface EducationProps {
     | WorkType[]
     | PresentationType[]
     | ArticleType[]
-    | ReferencePersonType[];
+    | ReferencePersonType[]
+    | VolunteerProjectType[];
   descriptionKey?: "description" | "role" | "school";
   includeEndDate?: boolean;
   titleKey: "name" | "title";

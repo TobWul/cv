@@ -19,6 +19,7 @@ export const Cv: React.FC<CvProps> = ({
   languages,
   skillCategories,
   articles,
+  volunteerProjects,
   ...props
 }) => {
   const { portfolio } = props as unknown as { portfolio: PortfolioType };
@@ -78,10 +79,10 @@ export const Cv: React.FC<CvProps> = ({
           titleKey="name"
         />
         <GenericList
-          title={{ no: "Aritkler", en: "Articles" }}
-          list={articles}
-          titleKey="name"
-          includeEndDate={false}
+          title={{ no: "Frivillige verv", en: "Volunteer projects" }}
+          list={volunteerProjects}
+          titleKey={"name"}
+          descriptionKey={"description"}
         />
       </Row>
       <Row>
@@ -106,6 +107,12 @@ export const Cv: React.FC<CvProps> = ({
           ))}
           <div className="pb-128" />
         </Column>
+        <GenericList
+          title={{ no: "Aritkler", en: "Articles" }}
+          list={articles}
+          titleKey="name"
+          includeEndDate={false}
+        />
       </Row>
     </main>
   );

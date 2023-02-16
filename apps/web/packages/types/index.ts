@@ -86,3 +86,10 @@ export type PortfolioType = {
   text: BlockContentType;
   showReferences: boolean;
 };
+
+export type VolunteerProjectType = {
+  name: LocaleStringType;
+  description: LocaleStringType;
+  startDate: string;
+  endDate: string;
+};

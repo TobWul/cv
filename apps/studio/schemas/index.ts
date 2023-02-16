@@ -12,6 +12,7 @@ import skillCategory from './skillCategory'
 import portfolio from './portfolio'
 import language from './language'
 import portfolioSlide from './portfolioSlide'
+import volunteerProjects from './volunteerProjects'
 
 export const schemaTypes = [
   project,
@@ -28,4 +29,5 @@ export const schemaTypes = [
   portfolio,
   language,
   portfolioSlide,
+  volunteerProjects,
 ]

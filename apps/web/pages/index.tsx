@@ -9,6 +9,7 @@ import {
   PresentationType,
   LanguageType,
   SkillCategoryType,
+  VolunteerProjectType,
 } from "packages/types";
 import { GetStaticProps } from "next";
 import { queries } from "packages/sanity/queries";
@@ -23,6 +24,7 @@ export type CvProps = {
   skillCategories: SkillCategoryType[];
   presentations: PresentationType[];
   highlightedProjects?: Pick<ProjectType, "_id">[];
+  volunteerProjects: VolunteerProjectType[];
 };
 
 export default function Home(data: CvProps) {

@@ -42,7 +42,8 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({
             : "bg-gray-200 hover:bg-gray-300"
         )}
       >
-        <span>{t(name)}</span> | <span>{t(description)}</span>
+        <span>{t(name)}</span> |{" "}
+        <span className="text-caption">{t(description)}</span>
         <ProjectImagePreview name={t(name)} image={mainImage} />
       </LinkOrDiv>
     </AnimateOnScroll>

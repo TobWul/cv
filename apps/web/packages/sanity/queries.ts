@@ -22,4 +22,5 @@ export const queries = {
   presentations: groq`"presentations": *[_type == "presentation"] {...}`,
   skillCategory: groq`"skillCategories": *[_type == "skillCategory"] {...}`,
   languages: groq`"languages": *[_type == "language"] | order(name desc) {...}`,
+  volunteerProjects: groq`"volunteerProjects": *[_type == "volunteerProjects"] | order(endDate desc) {...}`,
 };
