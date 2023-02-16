@@ -11,16 +11,22 @@ export default defineType({
       type: 'localeString',
     }),
     defineField({
+      name: 'slug',
+      type: 'slug',
+      options: {source: 'name.en'},
+    }),
+    defineField({
       name: 'description',
+      type: 'localeString',
+    }),
+    defineField({
+      name: 'introduction',
       type: 'localeText',
     }),
+
     defineField({
       name: 'mainImage',
       type: 'image',
-    }),
-    defineField({
-      name: 'content',
-      type: 'localeBlockContent',
     }),
     defineField({
       name: 'startDate',
@@ -29,6 +35,11 @@ export default defineType({
     defineField({
       name: 'endDate',
       type: 'date',
+    }),
+    defineField({
+      name: 'slides',
+      type: 'array',
+      of: [{type: 'portfolioSlide'}],
     }),
   ],
   orderings: [

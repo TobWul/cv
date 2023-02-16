@@ -2,9 +2,11 @@ import { LocaleStringType } from "../../../studio/languages";
 
 export type { CurrentLanguage } from "../../../studio/languages";
 
-type BlockContentType = any;
+export type BlockContentType = any;
 
 export type SanityImageType = any;
+
+export type SanitySlugType = { current: string };
 
 export type EducationType = {
   _id?: string;
@@ -29,11 +31,35 @@ export type PresentationType = {
 export type ProjectType = {
   _id?: string;
   name: LocaleStringType;
+  slug: SanitySlugType;
+  introduction: LocaleStringType;
   description: LocaleStringType;
   mainImage: SanityImageType;
   content: BlockContentType;
   startDate: string;
   endDate: string;
+  slides: PortfolioSlideType[];
+};
+
+export type PortfolioSlideType = {
+  _id?: string;
+  image: SanityImageType;
+  title: LocaleStringType;
+  text: LocaleStringType;
+  position: "left" | "right";
+};
+
+export type LanguageType = {
+  _id?: string;
+  name: string;
+  level: LocaleStringType;
+};
+
+export type SkillCategoryType = {
+  _id?: string;
+  name: LocaleStringType;
+  skills_no: string[];
+  skills_en: string[];
 };
 
 export type ReferencePersonType = {
@@ -51,4 +77,12 @@ export type WorkType = {
   description: LocaleStringType;
   startDate: string;
   endDate: string;
+};
+
+export type PortfolioType = {
+  companyName: string;
+  slug: SanitySlugType;
+  projects: ProjectType[];
+  text: BlockContentType;
+  showReferences: boolean;
 };

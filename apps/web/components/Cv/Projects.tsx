@@ -1,10 +1,14 @@
+import { BlockContent } from "components/BlockContent";
 import { MonthIndicator } from "components/Project/MonthIndicator";
 import { ProjectItem } from "components/Project/ProjectItem";
-import { LanguageContext } from "context/LanguageContex";
-import { ProjectType } from "packages/types";
+import { useI18n } from "packages/i18n";
+import { BlockContentType, ProjectType } from "packages/types";
 import { useContext } from "react";
+import { LocaleStringType } from "../../../studio/languages";
 
 interface ProjectsProps {
+  title: LocaleStringType;
+  text: BlockContentType;
   projects: ProjectType[];
   highlightedProjects: ProjectType[];
 }
@@ -39,10 +43,12 @@ function dateRange(startDate: string, endDate: string) {
 }
 
 export const Projects: React.FC<ProjectsProps> = ({
+  title,
+  text,
   projects,
   highlightedProjects,
 }) => {
-  const { localeToString } = useContext(LanguageContext);
+  const { t } = useI18n();
 
   const fromDate = projects[0].endDate;
   const dayToPxRatio = 2;
@@ -57,17 +63,19 @@ export const Projects: React.FC<ProjectsProps> = ({
     const days = daysBetween(startDate, endDate);
     return days * dayToPxRatio;
   };
+
   return (
     <div className=" border-b max-w-screen overflow-x-auto">
       <div className="max-w-content mx-auto py-48 px-content">
-        <h2>Prosjekter</h2>
+        <h2>{t(title)}</h2>
+        <BlockContent blocks={text} />
         <p>
-          Hei Lego! Relevante prosjekter er markert i{" "}
+          Relevante prosjekter er markert i{" "}
           <span className="text-accent">rødt</span>
         </p>
       </div>
       <div className="relative max-w-content mx-auto px-content">
-        <div className="h-full">
+        <div className="absolute top-0 left-24 h-full w-full">
           {dateRange(
             projects[projects.length - 1].startDate,
             projects[0].endDate
@@ -83,6 +91,10 @@ export const Projects: React.FC<ProjectsProps> = ({
           {projects.map((project, index) => {
             const leftOffset = calculateLeftOffset(project.endDate);
             const width = calculateWidth(project.startDate, project.endDate);
+            const highlighted =
+              highlightedProjects?.some(
+                (highlightedProject) => highlightedProject._id === project._id
+              ) || project.slides?.length > 0;
             return (
               <div
                 key={project._id}
@@ -90,17 +102,12 @@ export const Projects: React.FC<ProjectsProps> = ({
                 className="relative"
               >
                 <ProjectItem
-                  name={localeToString(project.name)}
-                  description={localeToString(project.description)}
-                  mainImage={project.mainImage}
+                  {...project}
                   left={leftOffset}
                   width={width}
                   index={index}
-                  hasContent={Boolean(project.content)}
-                  highlighted={highlightedProjects?.some(
-                    (highlightedProject) =>
-                      highlightedProject._id === project._id
-                  )}
+                  hasContent={Boolean(project.slides)}
+                  highlighted={highlighted}
                 />
               </div>
             );

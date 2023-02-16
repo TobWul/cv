@@ -1,23 +1,25 @@
 import groq from "groq";
 
 export const queries = {
-  highlighted: groq`*[_type == "highlighted" && slug.current == $companyName] {...}[0]`,
-  work: groq`*[_type == "work"] | order(startDate desc) {...}`,
-  education: groq`*[_type == "education"] | order(startDate desc){...}`,
-  articles: groq`*[_type == "article"] | order(date desc) {...}`,
-  projects: groq`*[_type == "project"] | order(startDate desc) {...}`,
-  references: groq`*[_type == "project"] {...}`,
-  presentations: groq`*[_type == "presentation"] {...}`,
+  portfolio: groq`"portfolio": *[_type == "portfolio" && slug.current == $companyName] {..., projects[]->{...}}[0]`,
+  work: groq`"work": *[_type == "work"] | order(startDate desc) {...}`,
+  education: groq`"education": *[_type == "education"] | order(startDate desc){...}`,
+  articles: groq`"articles": *[_type == "article"] | order(date desc) {...}`,
+  projects: groq`"projects": *[_type == "project"] | order(startDate desc) {
+    ..., 
+    mainImage {
+      ...,
+      "asset": asset->{
+        ...,
+        metadata {
+          ...,
+          lqip
+        }
+      },
+    }
+    }`,
+  references: groq`"references": *[_type == "referencePerson"] {...}`,
+  presentations: groq`"presentations": *[_type == "presentation"] {...}`,
+  skillCategory: groq`"skillCategories": *[_type == "skillCategory"] {...}`,
+  languages: groq`"languages": *[_type == "language"] | order(name desc) {...}`,
 };
-
-export const cvQuery = (additionalQuires?: string) => groq`
-{
-  ${additionalQuires ? additionalQuires + ",\n" : ""}
-  articles: ${queries.articles},
-  education: ${queries.education},
-  presentations: ${queries.presentations},
-  projects: ${queries.projects},
-  references: ${queries.references},
-  work: ${queries.work}
-}
-`;

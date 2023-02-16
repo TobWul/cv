@@ -5,7 +5,7 @@ type Props = {
   children: React.ReactNode;
   reappear?: boolean;
   threshold?: number;
-  animation?: "fade";
+  animation?: "fade" | "slide" | "background-fade";
   index?: number;
   childDelay?: number;
 };
@@ -62,17 +62,30 @@ export const AnimateOnScroll = ({
   });
 
   const animations = {
-    fade: isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-24",
+    fade: classNames(
+      isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-24",
+      "duration-500"
+    ),
+    slide: classNames(
+      isVisible
+        ? "group opacity-100 translate-x-0 scale-100"
+        : "opacity-20 [&>div]:blur-sm translate-x-64 scale-95",
+      "duration-500 [&>div]:transition-all"
+    ),
+    "background-fade": classNames(
+      isVisible ? "bg-gray-600" : "bg-gray-100 ",
+      "duration-1000 ease-in-out"
+    ),
   };
 
   return (
     <div
       ref={containerRef}
       style={{
-        transitionDelay: `${index ? 50 * index : 0}ms`,
+        transitionDelay: `${index ? childDelay * index : 0}ms`,
       }}
       className={classNames(
-        "transition duration-500 if-motion-reduce",
+        "transition-all if-motion-reduce ",
         animations[animation]
       )}
     >

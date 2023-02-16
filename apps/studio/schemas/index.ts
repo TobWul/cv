@@ -9,7 +9,9 @@ import project from './project'
 import reference from './reference'
 import work from './work'
 import skillCategory from './skillCategory'
-import highlighted from './highlighted'
+import portfolio from './portfolio'
+import language from './language'
+import portfolioSlide from './portfolioSlide'
 
 export const schemaTypes = [
   project,
@@ -23,5 +25,7 @@ export const schemaTypes = [
   localeText,
   localeBlockContent,
   skillCategory,
-  highlighted,
+  portfolio,
+  language,
+  portfolioSlide,
 ]

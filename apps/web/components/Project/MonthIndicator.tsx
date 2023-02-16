@@ -1,6 +1,5 @@
 import classNames from "classnames";
-import { LanguageContext } from "context/LanguageContex";
-import { useContext } from "react";
+import { useI18n } from "packages/i18n";
 
 interface MonthIndicatorProps {
   date: string;
@@ -11,10 +10,10 @@ export const MonthIndicator: React.FC<MonthIndicatorProps> = ({
   date,
   left,
 }) => {
-  const { selectedLanguage } = useContext(LanguageContext);
+  const { locale } = useI18n();
   const isJanuary = date.split("-")[1] === "01";
   const monthName = new Date(date).toLocaleDateString(
-    { no: "no-nb", en: "en-gb" }[selectedLanguage],
+    { no: "no-nb", en: "en-gb" }[locale],
     { month: "short", ...(isJanuary && { year: "2-digit" }) }
   );
 

@@ -1,9 +1,8 @@
 import { CurrentLanguage } from "packages/types";
 
-export const formatDate = (date: string, language?: CurrentLanguage) => {
+export const formatDate = (date: string, language: CurrentLanguage) => {
   if (!date) return;
-  const locale =
-    (language && { no: "no-nb", en: "en-gb" }[language]) || "no-nb";
+  const locale = { no: "no-nb", en: "en-gb" }[language] || "no-nb";
 
   return new Date(date).toLocaleDateString(locale, {
     month: "short",
@@ -11,9 +10,13 @@ export const formatDate = (date: string, language?: CurrentLanguage) => {
   });
 };
 
-export const formatDateRange = (startDate: string, endDate: string) => {
-  const start = formatDate(startDate);
-  const end = formatDate(endDate);
+export const formatDateRange = (
+  startDate: string,
+  endDate: string,
+  language: CurrentLanguage
+) => {
+  const start = formatDate(startDate, language);
+  const end = formatDate(endDate, language);
 
   if (!end) return `${start} - Avsluttende`;
   return `${start} - ${end}`;

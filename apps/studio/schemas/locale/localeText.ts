@@ -18,7 +18,7 @@ const localeString = {
   fields: supportedLanguages.map((lang) => ({
     title: lang.title,
     name: lang.id,
-    type: 'string',
+    type: 'text',
     fieldset: lang.isDefault ? null : 'translations',
   })),
 }

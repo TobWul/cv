@@ -1,21 +1,22 @@
 import classNames from "classnames";
 import { AnimateOnScroll } from "components/AnimateOnScroll";
+import Link from "next/link";
+import { useI18n } from "packages/i18n";
 import { ProjectType, SanityImageType } from "packages/types";
 import { ProjectImagePreview } from "./ProjectImagePreview";
 
-type ProjectItemProps = {
-  name: string;
-  description: string;
+interface ProjectItemProps
+  extends Pick<ProjectType, "name" | "slug" | "description" | "mainImage"> {
   left: number;
   width: number;
   hasContent: boolean;
   index?: number;
-  mainImage?: SanityImageType;
   highlighted: boolean;
-};
+}
 
 export const ProjectItem: React.FC<ProjectItemProps> = ({
   name,
+  slug,
   description,
   mainImage,
   hasContent,
@@ -24,21 +25,26 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({
   index,
   highlighted,
 }) => {
+  const { t } = useI18n();
+  const LinkOrDiv = Boolean(slug) ? Link : "div";
   return (
     <AnimateOnScroll index={index} childDelay={50}>
-      <div
+      <LinkOrDiv
+        href={hasContent && slug ? `/portfolio/${slug.current}` : ""}
         style={{ left, width }}
         className={classNames(
-          "group relative font-body mt-4 whitespace-nowrap px-8 py-8 text-label",
-          hasContent ? "cursor-pointer" : "cursor-default pointer-events-none",
+          "group block relative font-body mt-4 whitespace-nowrap px-8 py-8 text-label",
+          hasContent && slug
+            ? "cursor-pointer"
+            : "cursor-default pointer-events-none",
           highlighted
-            ? "bg-accent-400 hover:bg-accent-500 text-base"
+            ? "bg-accent-400 hover:bg-accent-500"
             : "bg-gray-200 hover:bg-gray-300"
         )}
       >
-        <span>{name}</span> | <span>{description}</span>
-        <ProjectImagePreview name={name} image={mainImage} />
-      </div>
+        <span>{t(name)}</span> | <span>{t(description)}</span>
+        <ProjectImagePreview name={t(name)} image={mainImage} />
+      </LinkOrDiv>
     </AnimateOnScroll>
   );
 };

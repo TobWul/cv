@@ -10,7 +10,7 @@ export default defineType({
     }),
     defineField({
       name: 'description',
-      type: 'localeString',
+      type: 'localeText',
     }),
     defineField({
       name: 'phone',

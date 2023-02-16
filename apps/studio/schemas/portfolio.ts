@@ -1,9 +1,8 @@
 import {defineField} from 'sanity'
-import {supportedLanguages} from '../languages'
 
 export default {
-  name: 'highlighted',
-  title: 'Highlighted',
+  name: 'portfolio',
+  title: 'Portfolio',
   type: 'document',
   fields: [
     defineField({
@@ -16,18 +15,18 @@ export default {
       options: {source: 'companyName'},
     }),
     defineField({
+      name: 'text',
+      type: 'blockContent',
+    }),
+    defineField({
       name: 'projects',
       type: 'array',
       of: [{type: 'reference', to: [{type: 'project'}]}],
     }),
     defineField({
-      name: 'text',
-      type: 'blockContent',
-    }),
-    defineField({
-      name: 'language',
-      type: 'string',
-      options: {list: supportedLanguages.map(({id, title}) => ({value: id, title: title}))},
+      name: 'showReferences',
+      type: 'boolean',
+      initialValue: false,
     }),
   ],
 }

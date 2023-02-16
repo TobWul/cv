@@ -1,18 +1,25 @@
 import { Column } from "components/Container";
 import { Item } from "components/Item";
-import { LanguageContext, LanguageContextType } from "context/LanguageContex";
 import { formatDate, formatDateRange } from "packages/dateHandling";
+import { useI18n } from "packages/i18n";
 import {
   ArticleType,
   EducationType,
   PresentationType,
+  ReferencePersonType,
   WorkType,
 } from "packages/types";
 import { useContext } from "react";
+import { LocaleStringType } from "../../../studio/languages";
 
 interface EducationProps {
-  list: EducationType[] | WorkType[] | PresentationType[] | ArticleType[];
-  title: string;
+  title: LocaleStringType;
+  list:
+    | EducationType[]
+    | WorkType[]
+    | PresentationType[]
+    | ArticleType[]
+    | ReferencePersonType[];
   descriptionKey?: "description" | "role" | "school";
   includeEndDate?: boolean;
   titleKey: "name" | "title";
@@ -25,22 +32,22 @@ export const GenericList: React.FC<EducationProps> = ({
   includeEndDate = true,
   list,
 }) => {
-  const { localeToString } = useContext(LanguageContext);
+  const { t, locale } = useI18n();
 
   return (
     <Column>
-      <h2>{title}</h2>
+      <h2>{t(title)}</h2>
       {list?.map((item, index) => {
         return (
           //@ts-ignore
-          <Item title={localeToString(item[titleKey])} key={item._id}>
-            <p className="text-label">{localeToString(item[descriptionKey])}</p>
+          <Item title={t(item[titleKey])} key={item._id}>
+            <p className="text-label">{t(item[descriptionKey])}</p>
             <p className="text-label">
               {includeEndDate
                 ? //@ts-ignore
-                  formatDateRange(item.startDate, item.endDate)
+                  formatDateRange(item.startDate, item.endDate, locale)
                 : //@ts-ignore
-                  formatDate(item.date)}
+                  formatDate(item.date, locale)}
             </p>
           </Item>
         );

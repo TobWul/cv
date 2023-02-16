@@ -1,7 +1,5 @@
-import { Habibi, Space_Grotesk } from "@next/font/google";
 import { Cv } from "components/Cv";
-import client, { sanityFetchStaticProps } from "packages/sanity";
-import groq from "groq";
+import client from "packages/sanity";
 import {
   WorkType,
   EducationType,
@@ -9,8 +7,11 @@ import {
   ProjectType,
   ReferencePersonType,
   PresentationType,
+  LanguageType,
+  SkillCategoryType,
 } from "packages/types";
 import { GetStaticProps } from "next";
+import { queries } from "packages/sanity/queries";
 
 export type CvProps = {
   work: WorkType[];
@@ -18,7 +19,10 @@ export type CvProps = {
   articles: ArticleType[];
   projects: ProjectType[];
   references: ReferencePersonType[];
+  languages: LanguageType[];
+  skillCategories: SkillCategoryType[];
   presentations: PresentationType[];
+  highlightedProjects?: Pick<ProjectType, "_id">[];
 };
 
 export default function Home(data: CvProps) {
@@ -26,15 +30,8 @@ export default function Home(data: CvProps) {
 }
 
 export const getStaticProps: GetStaticProps<CvProps> = async () => {
-  const query = groq`
-  {
-    "work": *[_type == "work"] | order(startDate desc) {...},
-    "education": *[_type == "education"] | order(startDate desc){...},
-    "articles": *[_type == "article"] | order(date desc) {...},
-    "projects": *[_type == "project"] | order(startDate desc) {...},
-    "references": *[_type == "project"] {...},
-    "presentations": *[_type == "presentation"] {...},
-  }`;
+  delete queries.portfolio;
+  const query = `{${Object.values(queries).join(",")}}`;
   return {
     props: await client.fetch(query),
   };
