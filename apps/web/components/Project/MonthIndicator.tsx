@@ -13,6 +13,7 @@ export const MonthIndicator: React.FC<MonthIndicatorProps> = ({
   const { locale } = useI18n();
   const isJanuary = date.split("-")[1] === "01";
   const monthName = new Date(date).toLocaleDateString(
+    // @ts-ignore
     { no: "no-nb", en: "en-gb" }[locale],
     { month: "short", ...(isJanuary && { year: "2-digit" }) }
   );

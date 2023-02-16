@@ -43,6 +43,7 @@ export const GenericList: React.FC<EducationProps> = ({
         return (
           //@ts-ignore
           <Item title={t(item[titleKey])} key={item._id}>
+            {/* @ts-ignore */}
             <p className="text-label">{t(item[descriptionKey])}</p>
             <p className="text-label">
               {includeEndDate

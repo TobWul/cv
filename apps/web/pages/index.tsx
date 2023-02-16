@@ -32,6 +32,7 @@ export default function Home(data: CvProps) {
 }
 
 export const getStaticProps: GetStaticProps<CvProps> = async () => {
+  // @ts-ignore
   delete queries.portfolio;
   const query = `{${Object.values(queries).join(",")}}`;
   return {

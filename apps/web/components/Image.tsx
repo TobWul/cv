@@ -46,8 +46,10 @@ export const Image: React.FC<ImageProps> = ({
     <Img
       className={classNames(["select-none object-fill", className])}
       alt={alt ?? image.asset.altText}
+      // @ts-ignore
       {...imageProps}
       sizes={sizes}
+      // @ts-ignore
       width={imageProps.width}
       blurDataURL={image.asset.metadata?.lqip}
     />

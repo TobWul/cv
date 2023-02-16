@@ -13,6 +13,7 @@ export const Row: React.FC<RowProps> = ({ children }) => {
     <section className={"border-b border-gray-300 "}>
       <div
         className={classNames("max-w-content mx-auto", {
+          // @ts-ignore
           "grid md:grid-cols-2": children?.length === 2,
         })}
       >

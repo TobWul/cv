@@ -27,6 +27,7 @@ export const Skills: React.FC<SkillsProps> = ({ skillCategories }) => {
     <table className="border-separate border-spacing-y-24">
       {categories.map((category) => {
         return (
+          // @ts-ignore
           <tr key={category._id}>
             <td className="text-label align-text-top pr-24">
               {t(category.name)}:

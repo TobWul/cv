@@ -36,7 +36,7 @@ export const ProjectPortfolioPage: React.FC<ProjectPortfolioPageProps> = ({
 
 export async function getStaticPaths() {
   const result = (await client.fetch(groq`*[_type == "project"].slug`)).filter(
-    (slug) => slug
+    (slug: any) => slug
   );
 
   return {
