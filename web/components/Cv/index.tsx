@@ -56,7 +56,7 @@ export const Cv: React.FC<CvProps> = ({
         <Column>
           <h2>{t({ no: "Språk", en: "Languages" })}</h2>
           {languages.map((language) => (
-            <Item title={language.name} key={language._id}>
+            <Item title={t(language.name)} key={language._id}>
               <p className="text-label">{t(language.level)}</p>
             </Item>
           ))}

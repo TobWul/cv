@@ -1,4 +1,7 @@
+import { Row } from "components/Container";
+import { Image } from "components/Image";
 import groq from "groq";
+import Link from "next/link";
 import { GetStaticProps } from "next/types";
 import { useI18n } from "packages/i18n";
 import client from "packages/sanity";
@@ -16,11 +19,29 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
   const { t } = useI18n();
   return (
     <div>
-      <h2>{companyName}</h2>
+      <header className="max-w-content mx-auto py-128 px-24 ">
+        <h1>
+          {t({ en: "Hi", no: "Hei" })} {companyName} 👋
+        </h1>
+        <p>{t(text)}</p>
+      </header>
       <ul>
         {projects.map((project) => (
-          <li key={project._id}>
-            <h3>{t(project.name)}</h3>
+          <li key={project._id} className="border-b first:border-t">
+            <Link
+              className="grid md:grid-cols-[3fr_2fr] py-32 max-w-content items-center mx-auto px-24 group"
+              href={`/portfolio/${project.slug.current}`}
+            >
+              <Image
+                image={project.mainImage}
+                alt={project.name.en}
+                className="md:order-2 md:m-0 mb-24"
+              />
+              <div>
+                <h3 className="group-hover:underline">{t(project.name)}</h3>
+                <p>{t(project.description)}</p>
+              </div>
+            </Link>
           </li>
         ))}
       </ul>

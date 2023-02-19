@@ -18,9 +18,9 @@ export const queries = {
       },
     }
     }`,
-  references: groq`"references": *[_type == "referencePerson"] {...}`,
-  presentations: groq`"presentations": *[_type == "presentation"] {...}`,
-  skillCategory: groq`"skillCategories": *[_type == "skillCategory"] {...}`,
-  languages: groq`"languages": *[_type == "language"] | order(name desc) {...}`,
+  references: groq`"references": *[_type == "referencePerson"] | order(sorting) {...}`,
+  presentations: groq`"presentations": *[_type == "presentation"] | order(date desc) {...}`,
+  skillCategory: groq`"skillCategories": *[_type == "skillCategory"] | order(sorting) {...}`,
+  languages: groq`"languages": *[_type == "language"] | order(sorting) {...}`,
   volunteerProjects: groq`"volunteerProjects": *[_type == "volunteerProjects"] | order(endDate desc) {...}`,
 };

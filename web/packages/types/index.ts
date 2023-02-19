@@ -51,7 +51,7 @@ export type PortfolioSlideType = {
 
 export type LanguageType = {
   _id?: string;
-  name: string;
+  name: LocaleStringType;
   level: LocaleStringType;
 };
 

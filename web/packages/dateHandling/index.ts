@@ -18,6 +18,6 @@ export const formatDateRange = (
   const start = formatDate(startDate, language);
   const end = formatDate(endDate, language);
 
-  if (!end) return `${start} - Avsluttende`;
+  if (!end) return `${start} - `;
   return `${start} - ${end}`;
 };

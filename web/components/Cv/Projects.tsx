@@ -69,10 +69,6 @@ export const Projects: React.FC<ProjectsProps> = ({
       <div className="max-w-content mx-auto py-48 px-content">
         <h2>{t(title)}</h2>
         <BlockContent blocks={text} />
-        <p>
-          Relevante prosjekter er markert i{" "}
-          <span className="text-accent">rødt</span>
-        </p>
       </div>
       <div className="relative max-w-content mx-auto px-content">
         <div className="absolute top-0 left-24 h-full w-full">

@@ -16,7 +16,7 @@ export default {
     }),
     defineField({
       name: 'text',
-      type: 'blockContent',
+      type: 'localeText',
     }),
     defineField({
       name: 'projects',

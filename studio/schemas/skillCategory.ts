@@ -1,5 +1,6 @@
 import {defineType} from 'sanity'
 import {supportedLanguages} from '../languages'
+import sorting from './sorting'
 
 export default defineType({
   name: 'skillCategory',
@@ -13,6 +14,7 @@ export default defineType({
     },
   ],
   fields: [
+    sorting,
     defineType({
       name: 'name',
       type: 'localeString',
