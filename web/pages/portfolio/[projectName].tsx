@@ -2,6 +2,7 @@ import { AnimateOnScroll } from "components/AnimateOnScroll";
 import { ProjectSlide } from "components/Project/ProjectSlide";
 import groq from "groq";
 import { GetStaticProps } from "next";
+import { formatDateRange } from "packages/dateHandling";
 import { useI18n } from "packages/i18n";
 import client from "packages/sanity";
 import { queries } from "packages/sanity/queries";
@@ -14,14 +15,19 @@ export const ProjectPortfolioPage: React.FC<ProjectPortfolioPageProps> = ({
   name,
   introduction,
   slides,
+  startDate,
+  endDate,
 }) => {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   return (
-    <div>
-      <header className="max-w-screen-lg min-h-[40vh] mx-auto mt-48 flex items-center">
+    <div className="max-w-screen overflow-x-hidden">
+      <header className="max-w-screen-lg min-h-[40vh] mx-auto mt-48 flex items-center p-24">
         <div>
-          <h1>{t(name)}</h1>
+          <h1 className="mb-16">{t(name)}</h1>
           <p>{t(introduction)}</p>
+          <p className="text-label mt-16">
+            {formatDateRange(startDate, endDate, locale)}
+          </p>
         </div>
       </header>
 
