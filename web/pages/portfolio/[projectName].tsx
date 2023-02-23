@@ -8,6 +8,7 @@ import client from "packages/sanity";
 import { queries } from "packages/sanity/queries";
 import { ProjectType, SanitySlugType } from "packages/types";
 import * as React from "react";
+import { LocaleStringType } from "../../../studio/languages";
 
 interface ProjectPortfolioPageProps extends ProjectType {}
 
@@ -26,6 +27,7 @@ export const ProjectPortfolioPage: React.FC<ProjectPortfolioPageProps> = ({
           <h1 className="mb-16">{t(name)}</h1>
           <p>{t(introduction)}</p>
           <p className="text-label mt-16">
+            {/* @ts-ignore */}
             {formatDateRange(startDate, endDate, locale)}
           </p>
         </div>
