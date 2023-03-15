@@ -20,6 +20,7 @@ export const ProjectPortfolioPage: React.FC<ProjectPortfolioPageProps> = ({
   endDate,
 }) => {
   const { t, locale } = useI18n();
+
   return (
     <div className="max-w-screen overflow-x-hidden">
       <header className="max-w-screen-lg min-h-[40vh] mx-auto mt-48 flex items-center p-24">
