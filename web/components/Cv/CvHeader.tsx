@@ -12,6 +12,10 @@ export const CvHeader: React.FC<CvHeaderProps> = ({}) => {
     <Row>
       <Column>
         <h1>{NAME}</h1>
+        <div className="text-label">
+          <p>+47 472 44 448</p>
+          <p>tobias.wulvik@gmail.com</p>
+        </div>
         <LanguageSwitch />
       </Column>
     </Row>
