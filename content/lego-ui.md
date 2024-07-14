@@ -1,0 +1,1 @@
+# Komponentbibliotek i LEGO
