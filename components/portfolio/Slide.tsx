@@ -1,7 +1,7 @@
 import { SlideType } from "@/types";
 import Image from "next/image";
 import { type ReactElement } from "react";
-import { Prose } from "./Prose";
+import { Prose } from "../Prose";
 
 const PresentationSlide = ({ id, image }: { id: string; image: string }) => {
   return (
@@ -23,7 +23,7 @@ export function Slide({ id, metadata, content }: SlideType): ReactElement {
   return (
     <div
       id={id}
-      className="grid grid-cols-2 gap-48 items-center snap-center min-h-screen relative"
+      className="grid grid-cols-2 gap-48 items-center snap-center min-h-[70vh] relative"
     >
       <div className="height-full sticky">
         <Image

@@ -1,16 +1,22 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { Lora, Noto_Serif } from "next/font/google";
+import { DM_Sans, Lora } from "next/font/google";
 
 const body = Lora({
   subsets: ["latin-ext"],
   variable: "--font-body",
-  weight: ["400", "700"],
+  weight: ["400", "500", "700"],
+});
+
+const sans = DM_Sans({
+  subsets: ["latin-ext"],
+  variable: "--font-sans",
+  weight: ["400"],
 });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={`${body.variable} font-body`}>
+    <main className={`${body.variable} ${sans.variable} font-body`}>
       <Component {...pageProps} />
     </main>
   );

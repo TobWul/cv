@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
 export const useScroll = () => {
-  const [activeSlide, setActiveSlide] = useState<string | undefined>("start");
-  const [slides, setSlides] = useState<{ id: string; top: number }[]>();
+  const [activeSlide, setActiveSlide] = useState<string | undefined>();
+  const [elements, setElements] = useState<{ id: string; top: number }[]>();
 
-  const calculateSlidePositions = (slideElements: Element[]) =>
-    slideElements.map((slideEl) => ({
-      id: slideEl.id,
+  const calculateSlidePositions = (elements: Element[]) =>
+    elements.map((el) => ({
+      id: el.id,
       top:
-        slideEl.getBoundingClientRect().y +
-        slideEl.getBoundingClientRect().height * 0.95 +
+        el.getBoundingClientRect().y +
+        el.getBoundingClientRect().height * 0.95 +
         document.documentElement.scrollTop,
     }));
 
@@ -17,12 +17,12 @@ export const useScroll = () => {
   useEffect(() => {
     const handleResize = () => {
       const slideElements = Array.from(
-        document.getElementById("slides-container")?.children || [],
+        document.getElementById("toc")?.children || [],
       );
 
       const calculatedSlides = calculateSlidePositions(slideElements);
 
-      setSlides(calculatedSlides);
+      setElements(calculatedSlides);
     };
     handleResize();
 
@@ -33,22 +33,25 @@ export const useScroll = () => {
   }, []);
 
   useEffect(() => {
-    console.log("Scroll useEffect", slides);
+    console.log("Scroll useEffect", elements);
 
     const handleScroll = () => {
       const scrollDistance = document.documentElement.scrollTop;
 
-      console.log(slides, scrollDistance);
-      const slideInFocus = slides?.find((slide) => slide.top >= scrollDistance);
+      console.log(elements, scrollDistance);
+      const slideInFocus = elements?.find(
+        (slide) => slide.top >= scrollDistance,
+      );
       setActiveSlide(slideInFocus?.id);
     };
+    handleScroll();
 
     document.addEventListener("scroll", handleScroll);
 
     return () => {
       document.removeEventListener("scroll", handleScroll);
     };
-  }, [slides]);
+  }, [elements]);
 
-  return { slides, activeSlide };
+  return { elements, activeSlide };
 };

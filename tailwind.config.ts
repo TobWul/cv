@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import type { Config } from "tailwindcss";
+import colors from "tailwindcss/colors";
 
 const config: Config = {
   content: [
@@ -10,6 +11,7 @@ const config: Config = {
   theme: {
     fontFamily: {
       body: "var(--font-body)",
+      sans: "var(--font-sans)",
     },
     spacing: {
       0: "0",
@@ -43,11 +45,12 @@ const config: Config = {
       1536: "96rem",
       1792: "112rem",
       1920: "120rem",
+      page: "1536px",
     },
     fontSize: {
       caption: ["0.75rem", { lineHeight: "1.4em" }],
       body2: ["0.875rem", { lineHeight: "1.6em" }],
-      body1: ["1rem", { lineHeight: "1.6em" }],
+      body1: ["1rem", { lineHeight: "1.8em" }],
       subtitle2: ["1.125rem", { lineHeight: "1.4em" }],
       subtitle1: ["1.25rem", { lineHeight: "1.4em" }],
       heading4: ["1.5rem", { lineHeight: "1.2em" }],
@@ -56,12 +59,19 @@ const config: Config = {
       heading1: ["2.25rem", { lineHeight: "1.2em" }],
     },
     extend: {
-      typography: ({ theme }) => ({
+      colors: {
+        gray: colors.stone,
+        primary: colors.gray["900"],
+        secondary: colors.gray["600"],
+        tertiary: colors.gray["600"],
+      },
+      typography: ({ theme }: any) => ({
         cv: {
           css: {
             "--tw-prose-headings": theme("colors.gray[700]"),
             "--tw-prose-body": theme("colors.gray[700]"),
             "--tw-prose-bold": theme("colors.gray[700]"),
+            "--tw-prose-p": theme("text.body2"),
           },
         },
       }),

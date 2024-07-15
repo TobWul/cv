@@ -3,7 +3,7 @@ export type LocaleStringType = {
   en: string;
 };
 
-export type CurrentLanguage = keyof typeof LocaleStringType;
+export type CurrentLanguage = keyof LocaleStringType;
 
 export type BlockContentType = any;
 
@@ -76,8 +76,9 @@ export type ReferencePersonType = {
 export type WorkType = {
   _id?: string;
   name: string;
-  role: string;
+  role: LocaleStringType;
   description: LocaleStringType;
+  content: BlockContentType;
   startDate: string;
   endDate: string;
 };

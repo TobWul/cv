@@ -9,7 +9,7 @@ import meta from "@/content/_meta.json";
 
 const contentDirectory = path.join(process.cwd(), "content");
 
-export async function getSlideData(): Promise<SlideType[]> {
+export async function getSlideData(id?: string): Promise<SlideType[]> {
   const fileNames = fs.readdirSync(contentDirectory);
 
   const slides = await Promise.all(
@@ -35,6 +35,10 @@ export async function getSlideData(): Promise<SlideType[]> {
         };
       }),
   );
+
+  if (id) {
+    return slides.filter((slide) => slide.id === id);
+  }
 
   // Sort slides according to the order specified in _meta.json
   slides.sort((a, b) => {

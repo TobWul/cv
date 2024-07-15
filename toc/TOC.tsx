@@ -1,4 +1,4 @@
-import { useScroll } from "@/hooks";
+import { useScroll } from "./useScroll";
 import { SlideType } from "@/types";
 import { type ReactElement } from "react";
 
@@ -19,12 +19,12 @@ const Tick = ({ active, targetId }: { active: boolean; targetId: string }) => {
   );
 };
 
-export function TOC({ slides }: TOCProps): ReactElement {
-  const { activeSlide } = useScroll();
+export function TOC(): ReactElement {
+  const { activeSlide, elements } = useScroll();
 
   return (
-    <div className="fixed flex flex-col items-right right-24 top-1/3  z-10">
-      {slides.map(({ id }) => (
+    <div className="fixed flex flex-col items-right right-24 top-1/3 z-50">
+      {elements?.map(({ id }) => (
         <Tick active={activeSlide === id} targetId={id} key={id} />
       ))}
     </div>
