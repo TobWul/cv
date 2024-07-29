@@ -2,36 +2,10 @@
 image: "hello.png"
 ---
 
-# Digital produktdesigner på utkikk etter teknisk jobb
+# CV og portefølje
 
-Jeg heter Tobias Wulvik og har jobbet som digital produktdesigner i LEGO. Med tid fra LEGO og Umble, har jeg lært
+Hei, jeg heter Tobias Wulvik, en digital produktdesigner som hopper mellom UX, UI og frontend-arbeid. I prosjektene jeg har jobbet på, har jeg funnet min plass som en brobygger mellom sluttbrukeren og utviklerne. Det har jeg gjort gjennom innsiktsarbeid og workshop-arbeid for å forstå brukere og å jobbe sammen med utviklerne på selve koden.
 
-- **UX Design** — Dette er det jeg har jobbet mest
-- **Innsiktsarbeid** — Dette er det jeg har jobbet mest
-- **UI Design** — Sette opp et robust design tokens system som virker på tvers av light og dark mode. Les hvordan jeg har bygget opp et komponentbibliotek i [LEGO](#lego-ui).
-- **Frontendutvikling** — Dette er det jeg har jobbet mest
-- **Strategiarbeid** — Dette er det jeg har jobbet mest
+Verktøykassen min for å bygge bro er ganske variert. Jeg bruker Figma for å tegne opp brukergrensesnitt, og stor fan av enkle tusjtegninger. Enten det er for å lage low-fidelity prototyper eller for å skape tegneserieaktige metaforer for de konseptene vi jobber med – det er utrolig hva en enkel tegning kan gjøre for å samle folk rundt felles idéer (ta gjerne en titt på porteføljeprosjektene mine for mer!).
 
-Se [CV](/cv), eller scroll videre for å lese mer om min tid i LEGO.
-
-<!-- - UX Design -->
-<!--   - Bygget mange systemer, godt kjent med hvordan bygge opp tydelige informasjonsarkitektur. -->
-<!--   - OOUX, hvordan forklare det på en enkel og grei måte? -->
-<!--   - UX Research -->
-<!--     - Planlegge brukerinnsikt, utforskende, validerende osv. -->
-<!--     - Kjenner til metodene intervju, brukertesting. -->
-<!--     - Arbeidet med kvantitative brukerundersøkelser. -->
-<!-- - UI Design -->
-<!--   - Figma -->
-<!--   - Designsystemer -->
-<!--   - Sette opp et robust design tokens system som virker på tvers av light og dark mode. -->
-<!--   - Dark light mode -->
-<!-- - Utvikling -->
-<!--   - Er i stand til å utvikle frontenden til alt det jeg designer. Det betyr at det er kort vei fra konsept til kode. Enten det er jeg som skriver koden eller ikke. -->
-<!--   - Designene er alltid rotet i virkeligheten og finner balansen mellom hva som er enkelt og kode og hvor det er viktig å legge inn en ekstra innsats for å gjøre brukeropplevelsen ekstra god. -->
-<!--   - Jeg har alltid -->
-<!--   - Liker spesielt godt kreativ koding, og er ofte med på å pushe grensene for hva som er mulig. -->
-<!--   - Det jeg -->
-<!-- - Infrastruktur -->
-<!--   - Arbeidet med i infrastrukturen til LEGO -->
-<!--   - Spesielt godt kjent med APIene og dokumentasjon -->
+Litt om meg: Jeg kommer fra Mosjøen i Nordland, har studert i Trondheim, og har bodd de siste to årene i Danmark sammen med min forlovede. Når jeg har fri, liker jeg å komme meg ut i skogen for å spikke en stekespade, ta på meg skiene og gå opp på fjellet, eller fange fisk med harpun.
