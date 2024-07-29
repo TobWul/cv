@@ -23,8 +23,11 @@ export function Slide({ id, metadata, content }: SlideType): ReactElement {
   return (
     <div
       id={id}
-      className="grid grid-cols-2 gap-48 items-center snap-center min-h-[70vh] relative"
+      className="grid grid-cols-2 gap-48 items-center snap-center min-h-[70vh] relative max-w-page mx-auto"
     >
+      <Prose>
+        <div dangerouslySetInnerHTML={{ __html: content }} />
+      </Prose>
       <div className="height-full sticky">
         <Image
           src={`/sketches/${metadata.image}`}
@@ -33,9 +36,6 @@ export function Slide({ id, metadata, content }: SlideType): ReactElement {
           alt="Illustration"
         />
       </div>
-      <Prose>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
-      </Prose>
     </div>
   );
 }

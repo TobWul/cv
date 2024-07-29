@@ -36,5 +36,7 @@ export const getStaticProps: GetStaticProps<{
 
   const cvData = await sanityClient.fetch(query);
 
+  console.log(cvData);
+
   return { props: { slides, cvData } };
 };

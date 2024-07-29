@@ -7,6 +7,7 @@ export const queries: { [key: string]: string } = {
   articles: groq`"articles": *[_type == "article"] | order(date desc) {...}`,
   projects: groq`"projects": *[_type == "project"] | order(startDate desc) {
     ..., 
+    work->{...},
     mainImage {
       ...,
       "asset": asset->{

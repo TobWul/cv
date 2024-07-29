@@ -38,6 +38,7 @@ export type ProjectType = {
   introduction: LocaleStringType;
   description: LocaleStringType;
   mainImage: SanityImageType;
+  work: WorkType;
   content: BlockContentType;
   startDate: string;
   endDate: string;

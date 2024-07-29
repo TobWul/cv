@@ -15,6 +15,7 @@
     "classnames": "^2.5.1",
     "gray-matter": "^4.0.3",
     "groq": "^3.48.1",
+    "luxon": "^3.4.4",
     "next": "14.2.4",
     "next-sanity-image": "^6.1.1",
     "react": "^18",
@@ -24,6 +25,7 @@
     "remark-html": "^16.0.1"
   },
   "devDependencies": {
+    "@types/luxon": "^3.4.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

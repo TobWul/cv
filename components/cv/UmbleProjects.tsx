@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { type ReactElement } from "react";
 import { CvProps } from "./CvContent";
 import { renderDate } from "@/utils/renderDate";
@@ -17,8 +16,12 @@ export function UmbleProjects({ projects }: UmbleProjectsProps): ReactElement {
           {project.slug?.current ? (
             <ProjectLink
               className="underline underline-offset-2 underline-gray-200"
-              {...project}
-            />
+              alt={project.name.no}
+              slug={project.slug}
+              mainImage={project.mainImage}
+            >
+              {project.name.no}
+            </ProjectLink>
           ) : (
             project.name.no
           )}
@@ -27,10 +30,7 @@ export function UmbleProjects({ projects }: UmbleProjectsProps): ReactElement {
           {project.description.no}
         </td>
         <td className="text-tertiary w-full gap-4 md:table-cell hidden">
-          {renderDate(project.startDate, project.endDate, {
-            month: "short",
-            year: "2-digit",
-          })}
+          {renderDate(project.startDate, project.endDate, "short")}
         </td>
       </tr>
     );

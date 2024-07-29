@@ -2,10 +2,13 @@ import { BlockContentType } from "@/types";
 import { renderDate } from "@/utils/renderDate";
 import { type ReactElement } from "react";
 import { BlockContent } from "../BlockContent";
+import Image from "next/image";
 
-export type BaseCvCategoryProps = {
+export type CvCategoryProps = {
   category: string;
+  title: string;
   subtitle?: string;
+  logo?: string;
   body?: BlockContentType;
   extra?: ReactElement;
   tags?: string[];
@@ -15,15 +18,10 @@ export type BaseCvCategoryProps = {
   isLast?: boolean;
 };
 
-export type CvCategoryProps = (
-  | { title: string; tags?: never }
-  | { title?: never; tags: string[] }
-) &
-  BaseCvCategoryProps;
-
 export function CvCategory({
   category,
   title,
+  logo,
   subtitle,
   body,
   tags,
@@ -40,16 +38,29 @@ export function CvCategory({
           <td className="font-sans">{category}</td>
         </tr>
       )}
-      <tr className="padding-b-64">
-        <td className="md:block hidden align-top text-subtitle1 text-secondary ">
+      <tr>
+        <td className="md:block hidden align-top text-heading4 text-secondary">
           {isFirst && category}
         </td>
         <td className="align-top" style={{ paddingBottom: isLast ? 64 : 0 }}>
           <div className="flex flex-col gap-8">
-            <div className="md:flex gap-16">
-              {title && <p className="text-subtitle1 font-medium">{title}</p>}
+            <div className="md:flex gap-16 mb-8">
+              {title && (
+                <>
+                  {logo && (
+                    <Image
+                      src={logo}
+                      width={32}
+                      height={32}
+                      alt={title}
+                      className="object-contain"
+                    />
+                  )}
+                  <p className="text-heading4 font-medium">{title}</p>
+                </>
+              )}
               {subtitle && (
-                <p className="text-subtitle1 text-secondary">{subtitle}</p>
+                <p className="text-heading4 text-secondary">{subtitle}</p>
               )}
             </div>
             {tags && (
@@ -64,14 +75,16 @@ export function CvCategory({
                 ))}
               </div>
             )}
-            {body && (
-              <div className="prose prose-sm prose-cv">
+            {typeof body === "string" ? (
+              <div className="text-secondary">{body}</div>
+            ) : (
+              <div className="prose prose prose-cv">
                 <BlockContent blocks={body} />
               </div>
             )}
             {extra}
-            <p className="text-body1 font-sans text-secondary capitalize">
-              {startDate && renderDate(startDate, endDate)}
+            <p className="text-body1 font-sans text-secondary">
+              {startDate && renderDate(startDate, endDate, "relative")}
             </p>
           </div>
         </td>

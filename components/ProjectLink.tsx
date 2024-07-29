@@ -4,12 +4,15 @@ import { Image } from "@/components/Image";
 import Link from "next/link";
 import * as React from "react";
 
-type ProjectLinkProps = ProjectType & {
+type ProjectLinkProps = Pick<ProjectType, "mainImage" | "slug"> & {
   className?: string;
+  children: React.ReactNode;
+  alt: string;
 };
 
 export const ProjectLink: React.FC<ProjectLinkProps> = ({
-  name,
+  children,
+  alt,
   className,
   slug,
   mainImage,
@@ -25,12 +28,12 @@ export const ProjectLink: React.FC<ProjectLinkProps> = ({
       href={`project/${slug.current}`}
       className={`group relative underline underline-offset-2 underline-gray-200 ${className}`}
     >
-      {name.no}
+      {children}
       {mainImage && (
         <div className="group-hover:opacity-100 w-256 md:w-385 lg:w-512 opacity-0 z-10 absolute mt-4 top-full left-0 pointer-events-none">
           <Image
             image={mainImage}
-            alt={name.no}
+            alt={alt}
             className="opacity-0 group-hover:opacity-100 transition-opacity duration-[400ms]"
           />
           <div
