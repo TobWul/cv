@@ -1,3 +1,5 @@
+import { useI18n } from "@/hooks";
+import { CurrentLanguage } from "@/types";
 import { Interval } from "luxon";
 
 function getRelativeTimeDifference(start: Date, end: Date): string {
@@ -32,11 +34,18 @@ function getRelativeTimeDifference(start: Date, end: Date): string {
   return formattedYear + divider + formattedMonth;
 }
 
-export const renderDate = (
-  startDate: string,
-  endDate?: string,
-  format: "short" | "long" | "relative" = "long",
-) => {
+export const renderDate = ({
+  startDate,
+  endDate,
+  format = "long",
+  language,
+}: {
+  startDate: string;
+  endDate?: string;
+  format?: "short" | "long" | "relative";
+  language?: string;
+}) => {
+  const locale = { no: "no-nb", en: "en-gb" }[language || "no"] || "no-nb";
   const dates = {
     start: new Date(startDate),
     end: endDate && new Date(endDate),
@@ -49,7 +58,7 @@ export const renderDate = (
 
   const toString = (date: Date) =>
     date.toLocaleDateString(
-      "no-nb",
+      locale,
       format === "short"
         ? { month: "short", year: "2-digit" }
         : { month: "short", year: "numeric" },

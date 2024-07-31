@@ -5,6 +5,8 @@ import * as React from "react";
 import { sanityClient } from "@/utils/sanityClient";
 import { ProjectSlide } from "@/components/portfolio/ProjectSlide";
 import { renderDate } from "@/utils/renderDate";
+import { useI18n } from "@/hooks";
+import { LanguageSwitch } from "@/components/LanguageSwitch";
 
 interface ProjectPortfolioPageProps extends ProjectType {}
 
@@ -15,14 +17,16 @@ export const ProjectPortfolioPage: React.FC<ProjectPortfolioPageProps> = ({
   startDate,
   endDate,
 }) => {
+  const { t, locale } = useI18n();
   return (
     <main className="">
       <header className="max-w-screen-lg min-h-[40vh] mx-auto flex items-center p-24 pt-64 ">
         <div>
-          <h1 className="mb-16">{name.no}</h1>
-          <p>{introduction.no}</p>
+          <LanguageSwitch />
+          <h1 className="my-16">{t(name)}</h1>
+          <p>{t(introduction)}</p>
           <p className="text-label mt-16 font-sans text-secondary">
-            {renderDate(startDate, endDate)}
+            {renderDate({ startDate, endDate, language: locale })}
           </p>
         </div>
       </header>
@@ -47,10 +51,11 @@ export async function getStaticPaths() {
     },
   }));
 
-  console.log(result);
-
   return {
-    paths: result,
+    paths: result.flatMap((path: object) => [
+      { ...path, locale: "en" },
+      { ...path, locale: "no" },
+    ]),
     fallback: false, // can also be true or 'blocking'
   };
 }

@@ -6,6 +6,7 @@ import gfm from "remark-gfm";
 import html from "remark-html";
 import { SlideType } from "@/types";
 import meta from "@/content/_meta.json";
+import { markdownToHtml } from "./markdownToHtml";
 
 const contentDirectory = path.join(process.cwd(), "content");
 
@@ -22,11 +23,7 @@ export async function getSlideData(id?: string): Promise<SlideType[]> {
         const result = matter(fileContents);
 
         // Support github flavored markdown
-        const processedContent = await remark()
-          .use(gfm)
-          .use(html)
-          .process(result.content);
-        const contentHtml = processedContent.toString();
+        const contentHtml = await markdownToHtml(result.content);
 
         return {
           id: fileName.replace(/\.md$/, ""),

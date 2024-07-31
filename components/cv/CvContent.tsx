@@ -13,6 +13,7 @@ import { CvCategory } from "@/components/cv";
 import { UmbleProjects } from "./UmbleProjects";
 import { ProjectLink } from "../ProjectLink";
 import { LegoProjects } from "./LegoProjects";
+import { useI18n } from "@/hooks";
 
 export type CvProps = {
   work: WorkType[];
@@ -28,6 +29,7 @@ export type CvProps = {
 };
 
 export default function CvContent({ data }: { data: CvProps }) {
+  const { t, locale } = useI18n();
   return (
     <div className="bg-gray-100 border-y border-gray-200" id="cv">
       <table className="max-w-page mx-auto border-separate border-spacing-64 w-full py-64 margin-x-auto">
@@ -41,8 +43,8 @@ export default function CvContent({ data }: { data: CvProps }) {
             return (
               <CvCategory
                 title={work.name}
-                subtitle={work.role.no}
-                body={work.content?.no}
+                subtitle={t(work.role)}
+                body={t(work.content)}
                 logo={
                   {
                     "the lego group": "/lego.svg",
@@ -56,7 +58,7 @@ export default function CvContent({ data }: { data: CvProps }) {
                   }[work.name.toLowerCase()]
                 }
                 key={work._id}
-                category="Arbeidserfaring"
+                category={t({ no: "Arbeidserfaring", en: "Work" })}
                 startDate={work.startDate}
                 endDate={work.endDate}
                 isFirst={i === 0}
@@ -66,10 +68,10 @@ export default function CvContent({ data }: { data: CvProps }) {
           })}
           {data.education.map((education, i) => (
             <CvCategory
-              title={education.name.no}
-              subtitle={education.school.no}
+              title={t(education.name)}
+              subtitle={t(education.school)}
               key={education._id}
-              category="Utdanning"
+              category={t({ no: "Utdanning", en: "Education" })}
               startDate={education.startDate}
               endDate={education.endDate}
               isFirst={i === 0}
@@ -79,9 +81,12 @@ export default function CvContent({ data }: { data: CvProps }) {
           {data.skillCategories.map((skillCategory, i) => (
             <CvCategory
               key={skillCategory._id}
-              title={skillCategory.name.no}
-              category="Kompetanser"
-              tags={skillCategory.skills_no}
+              title={t(skillCategory.name)}
+              category={t({ no: "Kompetanser", en: "Skills" })}
+              tags={
+                // @ts-ignore
+                skillCategory[`skills_${locale}`] || skillCategory.skills_no
+              }
               isFirst={i === 0}
               isLast={i === data.skillCategories.length - 1}
             />
@@ -89,9 +94,9 @@ export default function CvContent({ data }: { data: CvProps }) {
           {data.languages.map((language, i) => (
             <CvCategory
               key={language._id}
-              title={language.name.no}
-              body={language.level.no}
-              category="Språk"
+              title={t(language.name)}
+              body={t(language.level)}
+              category={t({ no: "Språk", en: "Language" })}
               isFirst={i === 0}
               isLast={i === data.languages.length - 1}
             />

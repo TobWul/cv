@@ -1,3 +1,4 @@
+import { LanguageSwitch } from "@/components/LanguageSwitch";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { DM_Sans, Lora } from "next/font/google";

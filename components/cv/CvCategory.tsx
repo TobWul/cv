@@ -3,6 +3,7 @@ import { renderDate } from "@/utils/renderDate";
 import { type ReactElement } from "react";
 import { BlockContent } from "../BlockContent";
 import Image from "next/image";
+import { useI18n } from "@/hooks";
 
 export type CvCategoryProps = {
   category: string;
@@ -31,6 +32,7 @@ export function CvCategory({
   isLast,
   endDate,
 }: CvCategoryProps): ReactElement {
+  const { locale } = useI18n();
   return (
     <>
       {isFirst && (
@@ -84,7 +86,13 @@ export function CvCategory({
             )}
             {extra}
             <p className="text-body1 font-sans text-secondary">
-              {startDate && renderDate(startDate, endDate, "relative")}
+              {startDate &&
+                renderDate({
+                  startDate,
+                  endDate,
+                  format: "relative",
+                  language: locale,
+                })}
             </p>
           </div>
         </td>
