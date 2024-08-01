@@ -27,7 +27,7 @@ export function Slide({ id, metadata, content }: SlideType): ReactElement {
   return (
     <div
       id={id}
-      className="grid grid-cols-2 gap-48 items-center snap-center min-h-[70vh] relative max-w-page mx-auto"
+      className="md:px-64 py-24 px-48 md:grid grid-cols-2 gap-48 items-center snap-center min-h-[70vh] relative max-w-page mx-auto"
     >
       <Prose>
         <LanguageSwitch />

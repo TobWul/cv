@@ -46,21 +46,17 @@ export function CvCategory({
         </td>
         <td className="align-top" style={{ paddingBottom: isLast ? 64 : 0 }}>
           <div className="flex flex-col gap-8">
-            <div className="md:flex gap-16 mb-8">
-              {title && (
-                <>
-                  {logo && (
-                    <Image
-                      src={logo}
-                      width={32}
-                      height={32}
-                      alt={title}
-                      className="object-contain"
-                    />
-                  )}
-                  <p className="text-heading4 font-medium">{title}</p>
-                </>
+            <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16 mb-8">
+              {logo && (
+                <Image
+                  src={logo}
+                  width={32}
+                  height={32}
+                  alt={title}
+                  className="object-contain"
+                />
               )}
+              {title && <p className="text-heading4 font-medium">{title}</p>}
               {subtitle && (
                 <p className="text-heading4 text-secondary">{subtitle}</p>
               )}
