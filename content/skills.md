@@ -1,5 +1,0 @@
----
-image: "something"
----
-
-# Skills

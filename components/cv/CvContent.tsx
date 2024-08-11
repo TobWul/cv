@@ -11,7 +11,6 @@ import {
 } from "@/types";
 import { CvCategory } from "@/components/cv";
 import { UmbleProjects } from "./UmbleProjects";
-import { ProjectLink } from "../ProjectLink";
 import { LegoProjects } from "./LegoProjects";
 import { useI18n } from "@/hooks";
 
@@ -30,13 +29,18 @@ export type CvProps = {
 
 export default function CvContent({ data }: { data: CvProps }) {
   const { t, locale } = useI18n();
+  const getPosition = (
+    index: number,
+    arr: object[],
+  ): { isLast: boolean; isFirst: boolean } => ({
+    isFirst: index === 0,
+    isLast: index === arr.length - 1,
+  });
   return (
     <div className="bg-gray-100 border-y border-gray-200" id="cv">
       <table className="max-w-page mx-auto border-separate border-spacing-64 w-full py-64 margin-x-auto">
         <tbody>
           {data.work.map((work, i) => {
-            console.log(data.projects);
-
             const workProjects = data.projects.filter(
               (project) => project.work?._id === work._id,
             );
@@ -61,8 +65,7 @@ export default function CvContent({ data }: { data: CvProps }) {
                 category={t({ no: "Arbeidserfaring", en: "Work" })}
                 startDate={work.startDate}
                 endDate={work.endDate}
-                isFirst={i === 0}
-                isLast={i === data.work.length - 1}
+                {...getPosition(i, data.work)}
               />
             );
           })}
@@ -74,8 +77,7 @@ export default function CvContent({ data }: { data: CvProps }) {
               category={t({ no: "Utdanning", en: "Education" })}
               startDate={education.startDate}
               endDate={education.endDate}
-              isFirst={i === 0}
-              isLast={i === data.education.length - 1}
+              {...getPosition(i, data.education)}
             />
           ))}
           {data.skillCategories.map((skillCategory, i) => (
@@ -87,8 +89,7 @@ export default function CvContent({ data }: { data: CvProps }) {
                 // @ts-ignore
                 skillCategory[`skills_${locale}`] || skillCategory.skills_no
               }
-              isFirst={i === 0}
-              isLast={i === data.skillCategories.length - 1}
+              {...getPosition(i, data.skillCategories)}
             />
           ))}
           {data.languages.map((language, i) => (
@@ -97,8 +98,26 @@ export default function CvContent({ data }: { data: CvProps }) {
               title={t(language.name)}
               body={t(language.level)}
               category={t({ no: "Språk", en: "Language" })}
-              isFirst={i === 0}
-              isLast={i === data.languages.length - 1}
+              {...getPosition(i, data.languages)}
+            />
+          ))}
+          {data.articles.map((article, i) => (
+            <CvCategory
+              key={article._id}
+              category={t({ no: "Artikler", en: "Articles" })}
+              title={t(article.name)}
+              body={t(article.description)}
+              {...getPosition(i, data.articles)}
+            />
+          ))}
+
+          {data.volunteerProjects.map((volunteerProject, i) => (
+            <CvCategory
+              key={volunteerProject._id}
+              category={t({ no: "Verv", en: "Volunteer work" })}
+              title={t(volunteerProject.name)}
+              body={t(volunteerProject.description)}
+              {...getPosition(i, data.volunteerProjects)}
             />
           ))}
         </tbody>

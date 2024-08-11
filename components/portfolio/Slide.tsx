@@ -4,6 +4,7 @@ import { type ReactElement } from "react";
 import { Prose } from "../Prose";
 import { useI18n } from "@/hooks";
 import { LanguageSwitch } from "../LanguageSwitch";
+import { BlockContent } from "../BlockContent";
 
 const PresentationSlide = ({ id, image }: { id: string; image: string }) => {
   return (
@@ -29,13 +30,14 @@ export function Slide({ id, metadata, content }: SlideType): ReactElement {
       id={id}
       className="md:px-64 py-24 px-48 md:grid grid-cols-2 gap-48 items-center snap-center min-h-[70vh] relative max-w-page mx-auto"
     >
-      <Prose>
-        <LanguageSwitch />
-        <h1 className="mt-24">
-          {t({ no: "CV og portefølje", en: "CV and portfolio" })}
-        </h1>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
-      </Prose>
+      <div>
+        <div className="mb-16">
+          <LanguageSwitch />
+        </div>
+        <Prose>
+          <BlockContent blocks={t(content)} />
+        </Prose>
+      </div>
       <div className="height-full sticky">
         <Image
           src={`/sketches/${metadata.image}`}

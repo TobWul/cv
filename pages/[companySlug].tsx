@@ -1,10 +1,10 @@
 import CvContent, { CvProps } from "@/components/cv/CvContent";
 import { Slide } from "@/components/portfolio";
-import { PortfolioType } from "@/types";
+import { PortfolioType, SanitySlugType } from "@/types";
 import { portfolioQuery, queries } from "@/utils/queries";
 import { sanityClient } from "@/utils/sanityClient";
-import { GetStaticProps } from "next/types";
-
+import { GetStaticPaths, GetStaticProps } from "next";
+import React from "react";
 export default function Home({
   portfolio,
   cvData,
@@ -12,6 +12,8 @@ export default function Home({
   portfolio: PortfolioType;
   cvData: CvProps;
 }) {
+  console.log(portfolio);
+
   return (
     <div className="mx-auto">
       <div id="toc">
@@ -26,12 +28,28 @@ export default function Home({
   );
 }
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await sanityClient.fetch(
+    `*[_type == "portfolio"]{
+        slug
+      }`,
+  );
+  return {
+    paths: paths.map(({ slug }: { slug: SanitySlugType }) => ({
+      params: { companySlug: slug.current },
+    })),
+    fallback: "blocking",
+  };
+};
+
 export const getStaticProps: GetStaticProps<{
   cvData: CvProps;
   portfolio: PortfolioType;
-}> = async () => {
+}> = async (context) => {
+  delete queries.portfolio;
+
   const portfolio = await sanityClient.fetch(portfolioQuery, {
-    companyName: "default",
+    companyName: context.params?.companySlug,
   });
 
   const query = `{${Object.values(queries).join(",")}}`;

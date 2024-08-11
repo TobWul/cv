@@ -33,12 +33,8 @@ export const useScroll = () => {
   }, []);
 
   useEffect(() => {
-    console.log("Scroll useEffect", elements);
-
     const handleScroll = () => {
       const scrollDistance = document.documentElement.scrollTop;
-
-      console.log(elements, scrollDistance);
       const slideInFocus = elements?.find(
         (slide) => slide.top >= scrollDistance,
       );

@@ -93,6 +93,7 @@ export type PortfolioType = {
 };
 
 export type VolunteerProjectType = {
+  _id: string;
   name: LocaleStringType;
   description: LocaleStringType;
   startDate: string;

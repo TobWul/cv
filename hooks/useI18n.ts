@@ -8,7 +8,9 @@ export const useI18n = () => {
     if (typeof string !== "object") return string;
 
     let translated = string[locale as CurrentLanguage];
-    if (typeof string[locale as CurrentLanguage] === "undefined") {
+    console.log(translated);
+
+    if (!translated) {
       translated = string.no;
       console.warn(`Missing translation for "${string.no}" in "${locale}"`);
     }
