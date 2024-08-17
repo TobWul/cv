@@ -31,7 +31,7 @@ export default function CvContent({
   companySlug,
   data,
 }: {
-  companySlug: string;
+  companySlug?: string;
   data: CvProps;
 }) {
   const { t, locale } = useI18n();
