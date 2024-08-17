@@ -27,7 +27,13 @@ export type CvProps = {
   volunteerProjects: VolunteerProjectType[];
 };
 
-export default function CvContent({ data }: { data: CvProps }) {
+export default function CvContent({
+  companySlug,
+  data,
+}: {
+  companySlug: string;
+  data: CvProps;
+}) {
   const { t, locale } = useI18n();
   const getPosition = (
     index: number,
@@ -57,8 +63,18 @@ export default function CvContent({ data }: { data: CvProps }) {
                 }
                 extra={
                   {
-                    "the lego group": <LegoProjects projects={workProjects} />,
-                    umble: <UmbleProjects projects={workProjects} />,
+                    "the lego group": (
+                      <LegoProjects
+                        projects={workProjects}
+                        companySlug={companySlug}
+                      />
+                    ),
+                    umble: (
+                      <UmbleProjects
+                        projects={workProjects}
+                        companySlug={companySlug}
+                      />
+                    ),
                   }[work.name.toLowerCase()]
                 }
                 key={work._id}
@@ -85,6 +101,7 @@ export default function CvContent({ data }: { data: CvProps }) {
               key={skillCategory._id}
               title={t(skillCategory.name)}
               category={t({ no: "Kompetanser", en: "Skills" })}
+              body={t(skillCategory.description)}
               tags={
                 // @ts-ignore
                 skillCategory[`skills_${locale}`] || skillCategory.skills_no

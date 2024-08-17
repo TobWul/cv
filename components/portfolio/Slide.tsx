@@ -5,6 +5,7 @@ import { Prose } from "../Prose";
 import { useI18n } from "@/hooks";
 import { LanguageSwitch } from "../LanguageSwitch";
 import { BlockContent } from "../BlockContent";
+import { Image as SanityImage } from "../Image";
 
 const PresentationSlide = ({ id, image }: { id: string; image: string }) => {
   return (
@@ -19,7 +20,12 @@ const PresentationSlide = ({ id, image }: { id: string; image: string }) => {
   );
 };
 
-export function Slide({ id, metadata, content }: SlideType): ReactElement {
+export function Slide({
+  id,
+  metadata,
+  content,
+  companySlug,
+}: SlideType): ReactElement {
   const { t } = useI18n();
   if (metadata.type === "image") {
     return <PresentationSlide image={metadata.image} id={id} />;
@@ -35,16 +41,20 @@ export function Slide({ id, metadata, content }: SlideType): ReactElement {
           <LanguageSwitch />
         </div>
         <Prose>
-          <BlockContent blocks={t(content)} />
+          <BlockContent blocks={t(content)} companySlug={companySlug} />
         </Prose>
       </div>
       <div className="height-full sticky">
-        <Image
-          src={`/sketches/${metadata.image}`}
-          width={1080}
-          height={1080}
-          alt="Illustration"
-        />
+        {typeof metadata.image === "string" ? (
+          <Image
+            src={`/sketches/${metadata.image}`}
+            width={1080}
+            height={1080}
+            alt="Illustration"
+          />
+        ) : (
+          <SanityImage image={metadata.image} />
+        )}
       </div>
     </div>
   );

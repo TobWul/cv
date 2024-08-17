@@ -8,6 +8,7 @@ type ProjectLinkProps = Pick<ProjectType, "mainImage" | "slug"> & {
   className?: string;
   children: React.ReactNode;
   alt: string;
+  companySlug?: string;
 };
 
 export const ProjectLink: React.FC<ProjectLinkProps> = ({
@@ -16,6 +17,7 @@ export const ProjectLink: React.FC<ProjectLinkProps> = ({
   className,
   slug,
   mainImage,
+  companySlug,
 }) => {
   const borderClass =
     "absolute bg-gray-300 transition-transform duration-200 will-change-transform";
@@ -25,7 +27,11 @@ export const ProjectLink: React.FC<ProjectLinkProps> = ({
   };
   return (
     <Link
-      href={`project/${slug.current}`}
+      href={
+        companySlug
+          ? `${companySlug}/project/${slug.current}`
+          : `project/${slug.current}`
+      }
       className={`group relative underline underline-offset-2 underline-gray-200 ${className}`}
     >
       {children}

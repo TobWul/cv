@@ -7,9 +7,13 @@ import { useI18n } from "@/hooks";
 
 export interface UmbleProjectsProps {
   projects: CvProps["projects"];
+  companySlug?: string;
 }
 
-export function UmbleProjects({ projects }: UmbleProjectsProps): ReactElement {
+export function UmbleProjects({
+  projects,
+  companySlug,
+}: UmbleProjectsProps): ReactElement {
   const { t, locale } = useI18n();
   const ProjectListItem = ({ project }: { project: ProjectType }) => {
     return (
@@ -21,6 +25,7 @@ export function UmbleProjects({ projects }: UmbleProjectsProps): ReactElement {
               alt={t(project.name)}
               slug={project.slug}
               mainImage={project.mainImage}
+              companySlug={companySlug}
             >
               {t(project.name)}
             </ProjectLink>

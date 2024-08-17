@@ -8,21 +8,22 @@ import React from "react";
 export default function Home({
   portfolio,
   cvData,
+  companySlug,
 }: {
+  companySlug: string;
   portfolio: PortfolioType;
   cvData: CvProps;
 }) {
-  console.log(portfolio);
-
   return (
     <div className="mx-auto">
       <div id="toc">
         <Slide
           id="start"
           content={portfolio.text}
-          metadata={{ image: "hello.png" }}
+          metadata={{ image: portfolio.illustration || "hello.png" }}
+          companySlug={companySlug}
         />
-        <CvContent data={cvData} />
+        <CvContent data={cvData} companySlug={companySlug} />
       </div>
     </div>
   );
@@ -55,5 +56,7 @@ export const getStaticProps: GetStaticProps<{
   const query = `{${Object.values(queries).join(",")}}`;
   const cvData = await sanityClient.fetch(query);
 
-  return { props: { portfolio, cvData } };
+  return {
+    props: { portfolio, cvData, companySlug: context.params?.companySlug },
+  };
 };

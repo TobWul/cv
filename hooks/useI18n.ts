@@ -8,7 +8,6 @@ export const useI18n = () => {
     if (typeof string !== "object") return string;
 
     let translated = string[locale as CurrentLanguage];
-    console.log(translated);
 
     if (!translated) {
       translated = string.no;

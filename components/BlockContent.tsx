@@ -6,9 +6,13 @@ import { ProjectLink } from "./ProjectLink";
 
 interface BlockContentProps {
   blocks: BlockContentType;
+  companySlug?: string;
 }
 
-export const BlockContent: React.FC<BlockContentProps> = ({ blocks }) => {
+export const BlockContent: React.FC<BlockContentProps> = ({
+  blocks,
+  companySlug,
+}) => {
   const customComponents = {
     marks: {
       internalLink: ({
@@ -22,6 +26,7 @@ export const BlockContent: React.FC<BlockContentProps> = ({ blocks }) => {
           mainImage={value?.project.mainImage}
           slug={value ? value.project.slug : { current: "undefined" }}
           alt="Bilde av relevant prosjekt"
+          companySlug={companySlug}
         >
           {children}
         </ProjectLink>

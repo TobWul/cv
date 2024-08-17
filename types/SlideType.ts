@@ -7,4 +7,5 @@ export type SlideType = {
     type?: "image" | "default";
   };
   content: BlockContentType;
+  companySlug?: string;
 };

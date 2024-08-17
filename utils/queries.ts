@@ -1,6 +1,6 @@
 import groq from "groq";
 
-const mainImage = `mainImage {
+const image = (imageKey: string) => `${imageKey} {
       ...,
       "asset": asset->{
         ...,
@@ -19,16 +19,44 @@ const internalLinkReference = `{
     _type == "internalLink" => {
       "project": @.reference->{
         slug,
-        ${mainImage},
+        ${image("mainImage")},
       }
     }
   }
 }
 `;
 
+export const projectQuery = `*[_type == "project" && slug.current == $projectName]{
+    ...,
+    mainImage{
+      ...,
+      asset->{
+        ...,
+        metadata {
+          ...,
+          lqip
+        }
+      }
+    },
+    slides[]{
+      ...,
+      image{
+        ...,
+        asset->{
+          ...,
+          metadata {
+            ...,
+            lqip
+          }
+        }
+      }
+    }
+  }[0]`;
+
 export const portfolioQuery = groq`*[_type == "portfolio" && slug.current == $companyName] {
   companyName,
   slug,
+  ${image("illustration")},
   text {
     no[]${internalLinkReference},
     en[]${internalLinkReference},
@@ -48,7 +76,7 @@ export const queries: { [key: string]: string } = {
   projects: groq`"projects": *[_type == "project"] | order(startDate desc) {
     ..., 
     work->{...},
-    ${mainImage},
+    ${image("mainImage")},
   }`,
   references: groq`"references": *[_type == "referencePerson"] | order(sorting) {...}`,
   presentations: groq`"presentations": *[_type == "presentation"] | order(date desc) {...}`,

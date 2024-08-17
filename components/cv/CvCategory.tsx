@@ -65,7 +65,7 @@ export function CvCategory({
               <div className="flex flex-wrap gap-8 max-w-512">
                 {tags.map((tag) => (
                   <span
-                    className="bg-gray-200 py-2 px-4 rounded-sm font-sans text-body2"
+                    className="bg-gray-300 py-2 px-8 rounded-sm font-sans text-body2"
                     key={tag}
                   >
                     {tag}

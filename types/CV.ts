@@ -62,6 +62,7 @@ export type LanguageType = {
 export type SkillCategoryType = {
   _id?: string;
   name: LocaleStringType;
+  description: BlockContentType;
   skills_no: string[];
   skills_en: string[];
 };
@@ -86,6 +87,7 @@ export type WorkType = {
 
 export type PortfolioType = {
   companyName: string;
+  illustration?: SanityImageType;
   slug: SanitySlugType;
   projects: ProjectType[];
   text: BlockContentType;
