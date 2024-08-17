@@ -5,14 +5,17 @@ import { CurrentLanguage } from "@/types";
 
 interface LanguageSwitchProps {}
 
-const Squiggle = () => (
+const Squiggle = ({ hidden }: { hidden: boolean }) => (
   <svg
     width="52"
     height="5"
     viewBox="0 0 52 5"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className="fill-gray-600 absolute left-1/2 -translate-x-1/2 bottom-0"
+    className={classNames(
+      hidden && "scale-x-0 group-hover:scale-x-50",
+      "origin-center transition-transform fill-gray-600 absolute left-1/2 -translate-x-1/2 bottom-0",
+    )}
   >
     <path
       fillRule="evenodd"
@@ -35,17 +38,17 @@ export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({}) => {
       <button
         className={classNames(
           language === locale ? "text-gray-900 font-bold" : "text-gray-500",
-          "font-sans relative",
+          "font-sans relative group",
         )}
         onClick={() => changeLanguage(language)}
       >
         {children}
-        {language === locale && <Squiggle />}
+        <Squiggle hidden={language !== locale} />
       </button>
     );
   };
   return (
-    <div className="inline-flex items-center rounded overflow-hidden gap-16">
+    <div className="inline-flex items-center rounded gap-16">
       <Button language="no">Norsk</Button>
       <Button language="en">English</Button>
     </div>
