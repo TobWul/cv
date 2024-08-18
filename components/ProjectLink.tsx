@@ -36,41 +36,41 @@ export const ProjectLink: React.FC<ProjectLinkProps> = ({
     >
       {children}
       {mainImage && (
-        <div className="group-hover:opacity-100 h-fit-content w-256 md:w-385 lg:w-512 opacity-0 z-10 absolute mt-4 top-full left-0 pointer-events-none">
+        <span className="group-hover:opacity-100 block h-fit-content w-256 md:w-385 lg:w-512 opacity-0 z-10 absolute mt-4 top-full left-0 pointer-events-none">
           <Image
             image={mainImage}
             alt={alt}
             className="opacity-0 group-hover:opacity-100 transition-opacity duration-[400ms] m-0"
           />
-          <div
+          <span
             className={classNames(
               "top-0 origin-left ease-in",
               borderClass,
               size.x,
             )}
           />
-          <div
+          <span
             className={classNames(
               "right-0 origin-top delay-200 ease-out",
               size.y,
               borderClass,
             )}
           />
-          <div
+          <span
             className={classNames(
               "bottom-0 origin-left delay-200 ease-out",
               size.x,
               borderClass,
             )}
           />
-          <div
+          <span
             className={classNames(
               "left-0 origin-top ease-in",
               size.y,
               borderClass,
             )}
           />
-        </div>
+        </span>
       )}
     </Link>
   );
